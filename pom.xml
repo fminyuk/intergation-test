@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.nnc.research</groupId>
+    <artifactId>integration-tests</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <thirdpart.spring.version>5.0.7.RELEASE</thirdpart.spring.version>
+        <thirdpart.activemq.version>5.15.4</thirdpart.activemq.version>
+        <thirdpart.testng.version>6.14.3</thirdpart.testng.version>
+        <thirdpart.mockserver.version>5.4.1</thirdpart.mockserver.version>
+        <thirdpart.httpclient.version>4.5.5</thirdpart.httpclient.version>
+        <thirdpart.jackson.version>2.9.5</thirdpart.jackson.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.11.v20180605</version>
+                <configuration>
+                    <supportedPackagings>
+                        <supportedPackaging>jar</supportedPackaging>
+                    </supportedPackagings>
+                    <jettyXml>${project.basedir}/src/test/resources/jetty.xml</jettyXml>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>jetty.message</name>
+                            <value>12343</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.activemq</groupId>
+                        <artifactId>activemq-all</artifactId>
+                        <version>${thirdpart.activemq.version}</version>
+                    </dependency>
+                </dependencies>
+                <!--<configuration>-->
+                    <!--<webApp>-->
+                        <!--<contextPath>/main</contextPath>-->
+                    <!--</webApp>-->
+
+                <!--</configuration>-->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${thirdpart.spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${thirdpart.spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${thirdpart.httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson</groupId>
+            <artifactId>jackson-base</artifactId>
+            <version>${thirdpart.jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${thirdpart.testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${thirdpart.spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- mock-server -->
+        <dependency>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-netty</artifactId>
+            <version>${thirdpart.mockserver.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-client-java</artifactId>
+            <version>${thirdpart.mockserver.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
