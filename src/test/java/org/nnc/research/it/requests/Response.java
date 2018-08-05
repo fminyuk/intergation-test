@@ -1,4 +1,4 @@
-package org.nnc.research.requests;
+package org.nnc.research.it.requests;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

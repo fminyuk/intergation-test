@@ -1,4 +1,4 @@
-package org.nnc.research;
+package org.nnc.research.it;
 
 public class Data {
     private int id;

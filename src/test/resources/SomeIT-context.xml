@@ -10,8 +10,8 @@
 
     <context:property-placeholder location="classpath:test-env.properties"/>
 
-    <bean class="org.nnc.research.Listener"/>
+    <bean class="org.nnc.research.it.Listener"/>
 
-    <bean class="org.nnc.research.requests.SessionFactoryImpl"/>
+    <bean class="org.nnc.research.it.requests.SessionFactoryImpl"/>
 
 </beans>

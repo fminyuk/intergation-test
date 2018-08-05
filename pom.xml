@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.nnc.research</groupId>
+    <groupId>org.nnc.research.it</groupId>
     <artifactId>integration-tests</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -14,7 +14,7 @@
         <thirdpart.testng.version>6.14.3</thirdpart.testng.version>
         <thirdpart.mockserver.version>5.4.1</thirdpart.mockserver.version>
         <thirdpart.httpclient.version>4.5.5</thirdpart.httpclient.version>
-        <thirdpart.jackson.version>2.9.5</thirdpart.jackson.version>
+        <thirdpart.jackson.version>2.9.6</thirdpart.jackson.version>
     </properties>
 
     <build>
@@ -22,18 +22,16 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.11.v20180605</version>
+                <version>9.2.20.v20161216</version>
                 <configuration>
                     <supportedPackagings>
                         <supportedPackaging>jar</supportedPackaging>
                     </supportedPackagings>
                     <jettyXml>${project.basedir}/src/test/resources/jetty.xml</jettyXml>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>jetty.message</name>
-                            <value>12343</value>
-                        </systemProperty>
-                    </systemProperties>
+                    <systemPropertiesFile>${project.basedir}/src/test/resources/test-env.properties</systemPropertiesFile>
+                    <httpConnector>
+                        <port>20080</port>
+                    </httpConnector>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -42,12 +40,6 @@
                         <version>${thirdpart.activemq.version}</version>
                     </dependency>
                 </dependencies>
-                <!--<configuration>-->
-                    <!--<webApp>-->
-                        <!--<contextPath>/main</contextPath>-->
-                    <!--</webApp>-->
-
-                <!--</configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -71,6 +63,21 @@
             <artifactId>spring-context</artifactId>
             <version>${thirdpart.spring.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>${thirdpart.spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${thirdpart.spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${thirdpart.spring.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -78,8 +85,13 @@
             <version>${thirdpart.httpclient.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson</groupId>
-            <artifactId>jackson-base</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${thirdpart.jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
             <version>${thirdpart.jackson.version}</version>
         </dependency>
 

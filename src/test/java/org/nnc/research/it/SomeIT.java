@@ -1,7 +1,7 @@
-package org.nnc.research;
+package org.nnc.research.it;
 
 import org.mockserver.integration.ClientAndServer;
-import org.nnc.research.requests.SessionFactory;
+import org.nnc.research.it.requests.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;

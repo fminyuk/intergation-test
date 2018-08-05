@@ -4,8 +4,39 @@
 <Configure id="Server" class="org.eclipse.jetty.server.Server">
     <Get class="java.lang.System" name="out">
         <Call name="println">
-            <Arg>Server version is: <Get class="org.eclipse.jetty.server.Server" name="version"/><SystemProperty name="jetty.message"/></Arg>
+            <Arg>Server version is: <Get class="org.eclipse.jetty.server.Server" name="version"/></Arg>
+        </Call>
+        <Call name="println">
+            <Arg>Message: <Property name="jetty.message"/></Arg>
         </Call>
     </Get>
+
+    <New class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg/>
+        <Arg>jms/ConnectionFactory</Arg>
+        <Arg>
+            <New class="org.apache.activemq.ActiveMQConnectionFactory">
+                <Arg><Property name="broker.url"/></Arg>
+            </New>
+        </Arg>
+    </New>
+    <New class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg/>
+        <Arg>jms/in</Arg>
+        <Arg>
+            <New class="org.apache.activemq.command.ActiveMQQueue">
+                <Arg><Property name="queue.in"/></Arg>
+            </New>
+        </Arg>
+    </New>
+    <New class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg/>
+        <Arg>jms/out</Arg>
+        <Arg>
+            <New class="org.apache.activemq.command.ActiveMQQueue">
+                <Arg><Property name="queue.out"/></Arg>
+            </New>
+        </Arg>
+    </New>
 
 </Configure>
